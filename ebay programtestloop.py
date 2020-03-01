@@ -27,7 +27,7 @@ while True:
     file_name = input() #generates file name for later as PDF name
     print()
     print ("Does this look good? (write yes or no and press return)  " + file_name + '.pdf') #confirms file name
-    confirmation = input() #file name to write to pdf
+    confirmation = input() 
     if confirmation == 'yes':
         break
 print ("Thanks! Saving page info now!")
@@ -35,14 +35,14 @@ print ("Thanks! Saving page info now!")
 options = {
     'quiet': ''  #hides text output of pdfkit
     }
-pdfkit.from_url( item_url, (desktop + '/'+ dirName + '/'+ file_name + '.pdf'),options=options)
+pdfkit.from_url( item_url, (desktop + '/'+ dirName + '/'+ file_name + '.pdf'),options=options) #writes pdf silently
 print ("Now Moving File To Proper Location!")
 print ()
+#website data being pulled with Beautiful Soup
+
 page = requests.get(item_url) #requests html from url entered earlier
 soup = BeautifulSoup(page.text, 'html.parser') #parses html file, writes to text
-#price = soup.find(id='prcIsum_bidPrice') 
-price = soup.find(itemprop="price").get_text()
-#current bid price, NEEDS WORK
+price = soup.find(itemprop="price").get_text() #current bid price
 name = soup.find("title").get_text() #listing name / page title
 
 print ('The listing title is ' + str(name) )
@@ -50,8 +50,9 @@ print ('And the current bid is: ' + str(price) )
 
     
 
-
+#TASKS
 # find fix pdf write location To Ebay Dump created in beginning DONE
 # find way to loop back if name is wrong DONE
 #find way to loop back to beginning when task completes
-#fix bid price
+#find way to get beautifulsoup data into database
+# see if there's a way to save images from ebay listing with beautifulsoup 
